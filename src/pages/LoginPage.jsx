@@ -3,6 +3,7 @@ import { useState } from 'react';
 import '../styles/main.css';
 import '../styles/authentication.css';
 import AuthError from '../components/AuthError';
+import AuthHeader from '../components/AuthHeader';
 
 const DATA_DUMMY = 'admin';
 
@@ -52,7 +53,7 @@ export default function LoginPage() {
     return (
         <div className="auth-page login-page">
             <main className="auth-card">
-                <img
+                {/* <img
                     src="../assets/images/chill-app-logo.svg"
                     className="logo"
                     alt="chill-app-logo"
@@ -62,7 +63,12 @@ export default function LoginPage() {
                     <h1>Masuk</h1>
                     <p>Selamat datang kembali!</p>
                     <AuthError showError={errorLogin} />
-                </div>
+                </div> */}
+                <AuthHeader
+                    title={'Masuk'}
+                    greeting={'Selamat datang kembali!'}
+                    isError={errorLogin}
+                />
 
                 <form onSubmit={handleFormSubmit} noValidate>
                     <div className="form-group">

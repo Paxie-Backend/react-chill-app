@@ -1,8 +1,8 @@
-export default function AuthError({showError}) {
+export default function AuthError({isError}) {
     return (
         <span
             className="body-small-regular error-label"
-            style={{ display: showError ? 'block' : 'none' }}
+            style={{ display: isError ? 'block' : 'none' }}
         >
             Invalid username/password
         </span>
