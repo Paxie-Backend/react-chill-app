@@ -1,9 +1,9 @@
-import { NavLink, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import "../styles/main.css";
 import "../styles/authentication.css";
 import AuthHeader from "../components/AuthHeader";
-import AuthAction from "../components/AuthAction";
+import AuthForm from "../components/AuthForm";
 
 const DATA_DUMMY = "admin";
 
@@ -59,63 +59,16 @@ export default function LoginPage() {
           greeting={"Selamat datang kembali!"}
           isError={errorLogin}
         />
-
-        <form onSubmit={handleFormSubmit} noValidate>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              required={true}
-              placeholder="Masukkan username"
-              onChange={handleUsername}
-            />
-
-            <span
-              className="body-small-regular error-label"
-              style={{
-                display: submitted && !username.trim() ? "block" : "none",
-              }}
-            >
-              Username is required
-            </span>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password">Kata Sandi</label>
-            <input
-              id="password"
-              name="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="Masukkan kata sandi"
-              required={true}
-              onChange={handlePassword}
-            />
-            <span
-              className="body-small-regular error-label"
-              style={{
-                display: submitted && !password.trim() ? "block" : "none",
-              }}
-            >
-              Password is required
-            </span>
-
-            <img
-              src="../assets/images/eye-off.svg"
-              alt="eye-off"
-              className="form-group__icon"
-              onClick={handleShowPassword}
-            />
-            <div className="form-links">
-              <p>
-                Sudah terdaftar? <NavLink to="/register">Daftar</NavLink>
-              </p>
-            </div>
-          </div>
-
-          <AuthAction textBtn={"Masuk"} />
-        </form>
+        <AuthForm
+          handleFormSubmit={handleFormSubmit}
+          handleUsername={handleUsername}
+          handlePassword={handlePassword}
+          handleShowPassword={handleShowPassword}
+          username={username}
+          password={password}
+          showPassword={showPassword}
+          submitted={submitted}
+        />
       </main>
     </div>
   );
