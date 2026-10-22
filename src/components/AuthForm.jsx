@@ -1,9 +1,10 @@
-import { NavLink } from "react-router";
 import AuthAction from "../components/AuthAction";
 import AuthTextField from "./AuthTextField";
 import AuthPasswordField from "./AuthPasswordField";
+import AuthFormLink from "./AuthFormLink";
+import AuthPasswordConfirmField from "../components/AuthPasswordConfirmField";
 
-export default function Form(props) {
+export default function AuthForm(props) {
   const {
     handleFormSubmit,
     handleUsername,
@@ -13,6 +14,13 @@ export default function Form(props) {
     password,
     showPassword,
     submitted,
+    linkDesc,
+    linkText,
+    textBtn,
+    navigateTo,
+    isRegisterPage,
+    handlePasswordConfirm,
+    passwordConfirm,
   } = props;
 
   return (
@@ -46,16 +54,34 @@ export default function Form(props) {
             errorMsg: "Password is required",
             handleShowPassword: handleShowPassword,
             handlePassword: handlePassword,
+            isLoginPage: !isRegisterPage,
+          }}
+        >
+          {!isRegisterPage && (
+            <AuthFormLink
+              linkDesc={linkDesc}
+              linkText={linkText}
+              navigateTo={navigateTo}
+              isLoginPage={!isRegisterPage}
+            />
+          )}
+        </AuthPasswordField>
+      </div>
+      {isRegisterPage && (
+        <AuthPasswordConfirmField
+          props={{
+            password: password,
+            passwordConfirm: passwordConfirm,
+            submitted: submitted,
+            handlePasswordConfirm,
+            navigateTo: navigateTo,
+            linkDesc: linkDesc,
+            linkText: linkText,
           }}
         />
-        <div className="form-links">
-          <p>
-            Sudah terdaftar? <NavLink to="/register">Daftar</NavLink>
-          </p>
-        </div>
-      </div>
+      )}
 
-      <AuthAction textBtn={"Masuk"} />
+      <AuthAction textBtn={textBtn} />
     </form>
   );
 }

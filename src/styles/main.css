@@ -1,212 +1,219 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
 }
 
 body {
-    width: 100vw;
-    min-height: 100vh;
+  width: 100vw;
+  min-height: 100vh;
 }
 
 #root {
-    width: 100%;
-    min-height: 100vh;
+  width: 100%;
+  min-height: 100vh;
 }
 
 :root {
-    --bg-color-card: hsla(210, 8%, 10%, 0.84);
-    --min-width-card: 306px;
-    --max-width-card: 529px;
-    --radius-card: 8px;
-    --padding-card: 24px;
+  --bg-color-card: hsla(210, 8%, 10%, 0.84);
+  --min-width-card: 306px;
+  --max-width-card: 529px;
+  --radius-card: 8px;
+  --padding-card: 24px;
 }
 
 .body-small-regular {
-    font-family: Lato;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 140%;
-    letter-spacing: 0.2px;
+  font-family: Lato;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: 0.2px;
 }
 
 .error-label {
-    color: red;
-    display: none;
+  color: red;
+  display: none;
 }
 
 .auth-card {
-    width: 100%;
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--bg-color-card);
-    min-width: var(--min-width-card);
-    max-width: var(--max-width-card);
-    border-radius: var(--radius-card);
-    padding: var(--padding-card);
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color-card);
+  min-width: var(--min-width-card);
+  max-width: var(--max-width-card);
+  border-radius: var(--radius-card);
+  padding: var(--padding-card);
 }
 
 .logo {
-    width: 94px;
+  width: 94px;
 }
 
 .welcome {
-    display: flex;
-    gap: 4px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .welcome h1 {
-    font-weight: 700;
-    font-size: 18px;
-    color: hsla(0, 0%, 100%, 1);
-    line-height: 140%;
-    letter-spacing: 0.2px;
+  font-weight: 700;
+  font-size: 18px;
+  color: hsla(0, 0%, 100%, 1);
+  line-height: 140%;
+  letter-spacing: 0.2px;
 }
 
 .welcome p {
-    font-weight: 400;
-    font-size: 10px;
-    color: hsla(0, 0%, 100%, 1);
-    line-height: 140%;
-    letter-spacing: 0.2px;
+  font-weight: 400;
+  font-size: 10px;
+  color: hsla(0, 0%, 100%, 1);
+  line-height: 140%;
+  letter-spacing: 0.2px;
 }
 
 .auth-card form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .auth-card .form-group {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .auth-card label {
-    color: hsla(0, 0%, 100%, 1);
-    font-weight: 500;
-    font-size: 10px;
-    line-height: 140%;
-    letter-spacing: 0.2px;
+  color: hsla(0, 0%, 100%, 1);
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 140%;
+  letter-spacing: 0.2px;
 }
 
 .auth-card input {
-    height: 28px;
-    padding: 8px 12px;
-    display: block;
-    border: 0.58px solid hsla(250, 81%, 94%, 0.23);
-    border-radius: 12px;
-    background-color: transparent;
-    color: white;
-    font-size: 10px;
-    line-height: 140%;
-    letter-spacing: 0.12px;
+  height: 28px;
+  padding: 8px 12px;
+  display: block;
+  border: 0.58px solid hsla(250, 81%, 94%, 0.23);
+  border-radius: 12px;
+  background-color: transparent;
+  color: white;
+  font-size: 10px;
+  line-height: 140%;
+  letter-spacing: 0.12px;
 }
 
 .auth-card input::placeholder {
-    font-weight: 400;
-    color: hsla(220, 2%, 76%, 1);
+  font-weight: 400;
+  color: hsla(220, 2%, 76%, 1);
 }
 
 .form-links {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 3px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3px;
 }
 
 .form-links p {
-    color: hsla(220, 2%, 76%, 1);
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 140%;
-    letter-spacing: 0.2px;
+  color: hsla(220, 2%, 76%, 1);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: 0.2px;
 }
 
 .form-links a {
-    color: hsla(0, 0%, 100%, 1);
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 140%;
-    letter-spacing: 0.2px;
-    text-decoration: none;
+  color: hsla(0, 0%, 100%, 1);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: 0.2px;
+  text-decoration: none;
 }
 
 .auth-action {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
 .auth-action button {
-    width: 100%;
-    cursor: pointer;
+  width: 100%;
+  cursor: pointer;
 }
 
-.auth-action button[type='submit'] {
-    background-color: hsla(192, 4%, 25%, 1);
-    border: 0.58px solid hsla(250, 81%, 94%, 0.23);
-    border-radius: 14px;
-    padding: 8px 0;
-    color: hsla(0, 0%, 100%, 1);
-    font-weight: 600;
-    font-size: 10px;
-    line-height: 140%;
-    letter-spacing: 0.2px;
+.auth-action button[type="submit"] {
+  background-color: hsla(192, 4%, 25%, 1);
+  border: 0.58px solid hsla(250, 81%, 94%, 0.23);
+  border-radius: 14px;
+  padding: 8px 0;
+  color: hsla(0, 0%, 100%, 1);
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 140%;
+  letter-spacing: 0.2px;
 }
 
-.auth-action button[type='submit']:active {
-    background-color: hsla(192, 4%, 30%, 1);
+.auth-action button[type="submit"]:active {
+  background-color: hsla(192, 4%, 30%, 1);
 }
 
-.auth-action button[type='button']:active {
-    background-color: hsla(210, 8%, 15%, 0.84);
+.auth-action button[type="button"]:active {
+  background-color: hsla(210, 8%, 15%, 0.84);
 }
 
-.auth-action button[type='button'] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    background-color: transparent;
-    border: 0.58px solid hsla(250, 81%, 94%, 0.23);
-    border-radius: 14px;
-    padding: 8px 0;
-    color: hsla(0, 0%, 100%, 1);
-    font-weight: 600;
-    font-size: 10px;
-    line-height: 140%;
-    letter-spacing: 0.2px;
+.auth-action button[type="button"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background-color: transparent;
+  border: 0.58px solid hsla(250, 81%, 94%, 0.23);
+  border-radius: 14px;
+  padding: 8px 0;
+  color: hsla(0, 0%, 100%, 1);
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 140%;
+  letter-spacing: 0.2px;
 }
 
-.auth-action button[type='button'] img {
-    width: 10px;
-    height: 10px;
+.auth-action button[type="button"] img {
+  width: 10px;
+  height: 10px;
 }
 
 .form-group__icon {
-    width: 12px;
-    height: 12px;
-    top: 26px;
-    right: 12px;
-    position: absolute;
-    cursor: pointer;
+  width: 12px;
+  height: 12px;
+  top: 26px;
+  right: 12px;
+  position: absolute;
+  cursor: pointer;
 }
 
 .auth-action p {
-    font-weight: 500;
-    font-size: 10px;
-    color: hsla(225, 2%, 62%, 1);
+  font-weight: 500;
+  font-size: 10px;
+  color: hsla(225, 2%, 62%, 1);
+}
+
+@media screen and (width <= 360px) {
+  .auth-card {
+    margin-left: 27px;
+    margin-right: 27px;
+  }
 }

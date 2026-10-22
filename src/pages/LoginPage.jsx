@@ -36,11 +36,11 @@ export default function LoginPage() {
   };
 
   const handleUsername = (e) => {
-    setUsername(e.target.value.trim());
+    setUsername(e.target.value);
   };
 
   const handlePassword = (e) => {
-    setPassword(e.target.value.trim());
+    setPassword(e.target.value);
   };
 
   const handleShowPassword = () => {
@@ -68,6 +68,11 @@ export default function LoginPage() {
           password={password}
           showPassword={showPassword}
           submitted={submitted}
+          linkDesc="Belum punya akun?"
+          linkText="Daftar"
+          textBtn="Masuk"
+          navigateTo="/register"
+          isRegisterPage={false}
         />
       </main>
     </div>

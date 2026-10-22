@@ -1,9 +1,9 @@
-import { NavLink, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import "../styles/main.css";
 import "../styles/authentication.css";
 import AuthHeader from "../components/AuthHeader";
-import AuthAction from "../components/AuthAction";
+import AuthForm from "../components/AuthForm";
 
 const DATA_DUMMY = "admin";
 
@@ -44,15 +44,15 @@ export default function RegisterPage() {
   };
 
   const handleUsername = (e) => {
-    setUsername(e.target.value.trim());
+    setUsername(e.target.value);
   };
 
   const handlePassword = (e) => {
-    setPassword(e.target.value.trim());
+    setPassword(e.target.value);
   };
 
   const handlePasswordConfirm = (e) => {
-    setPasswordConfirm(e.target.value.trim());
+    setPasswordConfirm(e.target.value);
   };
 
   const handleShowPassword = () => {
@@ -71,89 +71,23 @@ export default function RegisterPage() {
           greeting={"Selamat datang!"}
           isError={errorLogin}
         />
-        <form onSubmit={handleFormSubmit} noValidate>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              required={true}
-              placeholder="Masukkan username"
-              onChange={handleUsername}
-            />
-            <span
-              className="body-small-regular error-label"
-              style={{ display: submitted && !username ? "block" : "none" }}
-            >
-              Username is required
-            </span>
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Kata Sandi</label>
-            <input
-              id="password"
-              name="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="Masukkan kata sandi"
-              required={true}
-              onChange={handlePassword}
-            />
-            <span
-              className="body-small-regular error-label"
-              style={{ display: submitted && !password ? "block" : "none" }}
-            >
-              Password is required
-            </span>
-            <img
-              src="../assets/images/eye-off.svg"
-              alt="eye-off"
-              className="form-group__icon"
-              onClick={handleShowPassword}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="confirm-password">Konfirmasi Kata Sandi</label>
-            <input
-              id="confirm-password"
-              name="confirm-password"
-              type="password"
-              placeholder="Masukkan kata sandi"
-              required={true}
-              onChange={handlePasswordConfirm}
-            />
-            <span
-              className="body-small-regular error-label"
-              style={{
-                display: submitted && !passwordConfirm ? "block" : "none",
-              }}
-            >
-              Please confirm your password
-            </span>
-            <span
-              className="body-small-regular error-label"
-              style={{
-                display:
-                  submitted &&
-                  password.trim() &&
-                  passwordConfirm.trim() &&
-                  password !== passwordConfirm
-                    ? "block"
-                    : "none",
-              }}
-            >
-              Password do not match
-            </span>
-            <div className="form-links">
-              <p>
-                Sudah punya akun? <NavLink to="/login">Masuk</NavLink>
-              </p>
-            </div>
-          </div>
-
-          <AuthAction textBtn={"Daftar"} />
-        </form>
+        <AuthForm
+          handleFormSubmit={handleFormSubmit}
+          handleUsername={handleUsername}
+          handlePassword={handlePassword}
+          handleShowPassword={handleShowPassword}
+          username={username}
+          password={password}
+          showPassword={showPassword}
+          submitted={submitted}
+          linkDesc="Sudah punya akun?"
+          linkText="Masuk"
+          textBtn="Daftar"
+          navigateTo="/login"
+          isRegisterPage={true}
+          handlePasswordConfirm={handlePasswordConfirm}
+          passwordConfirm={passwordConfirm}
+        ></AuthForm>
       </main>
     </div>
   );

@@ -1,4 +1,4 @@
-export default function AuthPasswordField({ props }) {
+export default function AuthPasswordField({ children, props }) {
   const {
     handleShowPassword,
     handlePassword,
@@ -36,6 +36,7 @@ export default function AuthPasswordField({ props }) {
         className="form-group__icon"
         onClick={handleShowPassword}
       />
+      {children}
     </>
   );
 }
