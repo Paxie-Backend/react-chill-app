@@ -18,6 +18,7 @@ export default function AuthTextField({ props }) {
         required={true}
         placeholder={placeholder}
         onChange={handleUsername}
+        value={username}
       />
 
       <span

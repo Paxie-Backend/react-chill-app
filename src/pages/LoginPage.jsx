@@ -33,6 +33,9 @@ export default function LoginPage() {
     if (credsAreValid) {
       navigate("/home");
     }
+
+    setUsername("");
+    setPassword("");
   };
 
   const handleUsername = (e) => {

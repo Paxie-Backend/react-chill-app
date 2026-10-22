@@ -41,6 +41,10 @@ export default function RegisterPage() {
     if (credsAreValid) {
       navigate("/login");
     }
+
+    setUsername("");
+    setPassword("");
+    setPasswordConfirm("");
   };
 
   const handleUsername = (e) => {

@@ -20,6 +20,7 @@ export default function AuthPasswordField({ children, props }) {
         required={true}
         placeholder={placeholder}
         onChange={handlePassword}
+        value={password}
       />
 
       <span

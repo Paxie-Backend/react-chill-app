@@ -21,6 +21,7 @@ export default function AuthPasswordConfirmField({ props }) {
         placeholder="Masukkan kata sandi"
         required={true}
         onChange={handlePasswordConfirm}
+        value={passwordConfirm}
       />
       <span
         className="body-small-regular error-label"
