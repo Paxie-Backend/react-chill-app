@@ -28,34 +28,29 @@ export default function AuthForm(props) {
       <div className="form-group">
         <label htmlFor="username">Username</label>
         <AuthTextField
-          props={{
-            id: "username",
-            name: "username",
-            type: "text",
-            placeholder: "Masukkan username",
-            submitted: submitted,
-            username: username,
-            errorMsg: "Username is required",
-            handleUsername: handleUsername,
-          }}
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Masukkan username"
+          submitted={submitted}
+          value={username}
+          errorMsg="Username is required"
+          onChange={handleUsername}
         />
       </div>
 
       <div className="form-group">
         <label htmlFor="password">Kata Sandi</label>
         <AuthPasswordField
-          props={{
-            id: "password",
-            name: "password",
-            type: showPassword ? "text" : "password",
-            placeholder: "Masukkan kata sandi",
-            submitted: submitted,
-            password: password,
-            errorMsg: "Password is required",
-            handleShowPassword: handleShowPassword,
-            handlePassword: handlePassword,
-            isLoginPage: !isRegisterPage,
-          }}
+          id="password"
+          name="password"
+          type={showPassword ? "text" : "password"}
+          placeholder="Masukkan kata sandi"
+          submitted={submitted}
+          value={password}
+          errorMsg="Password is required"
+          handleShowPassword={handleShowPassword}
+          onChange={handlePassword}
         >
           {!isRegisterPage && (
             <AuthFormLink
@@ -67,19 +62,17 @@ export default function AuthForm(props) {
           )}
         </AuthPasswordField>
       </div>
-      {isRegisterPage && (
+      {isRegisterPage ? (
         <AuthPasswordConfirmField
-          props={{
-            password: password,
-            passwordConfirm: passwordConfirm,
-            submitted: submitted,
-            handlePasswordConfirm,
-            navigateTo: navigateTo,
-            linkDesc: linkDesc,
-            linkText: linkText,
-          }}
+          password={password}
+          passwordConfirm={passwordConfirm}
+          submitted={submitted}
+          handlePasswordConfirm={handlePasswordConfirm}
+          navigateTo={navigateTo}
+          linkDesc={linkDesc}
+          linkText={linkText}
         />
-      )}
+      ) : null}
 
       <AuthAction textBtn={textBtn} />
     </form>

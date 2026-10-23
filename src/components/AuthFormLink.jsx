@@ -8,11 +8,11 @@ export default function AuthFormLink(props) {
       <p>
         {linkDesc} <NavLink to={navigateTo}>{linkText}</NavLink>
       </p>
-      {isLoginPage && (
+      {isLoginPage ? (
         <p>
           <NavLink>Lupa kata sandi?</NavLink>
         </p>
-      )}
+      ) : null}
     </div>
   );
 }

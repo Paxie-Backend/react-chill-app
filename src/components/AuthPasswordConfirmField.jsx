@@ -1,6 +1,6 @@
 import AuthFormLink from "./AuthFormLink";
 
-export default function AuthPasswordConfirmField({ props }) {
+export default function AuthPasswordConfirmField(props) {
   const {
     handlePasswordConfirm,
     submitted,

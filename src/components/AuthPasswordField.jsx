@@ -1,32 +1,12 @@
-export default function AuthPasswordField({ children, props }) {
-  const {
-    handleShowPassword,
-    handlePassword,
-    id,
-    name,
-    type,
-    placeholder,
-    submitted,
-    password,
-    errorMsg,
-  } = props;
-
+export default function AuthPasswordField({ children, ...props }) {
+  const { handleShowPassword, submitted, errorMsg, ...resProps } = props;
   return (
     <>
-      <input
-        id={id}
-        name={name}
-        type={type}
-        required={true}
-        placeholder={placeholder}
-        onChange={handlePassword}
-        value={password}
-      />
-
+      <input {...resProps} />
       <span
         className="body-small-regular error-label"
         style={{
-          display: submitted && !password.trim() ? "block" : "none",
+          display: submitted && !resProps.value.trim() ? "block" : "none",
         }}
       >
         {errorMsg}
