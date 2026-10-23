@@ -1,22 +1,18 @@
 .auth-page {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .login-page {
-    background-image: url(assets/images/bg-image.jpg);
+  background-image: url(assets/images/bg-image.jpg);
 }
 
 .register-page {
-    background-image: url(assets/images/bg-desktop-daftar.jpg);
+  background-image: url(assets/images/bg-desktop-daftar.jpg);
 }
-
-/* .auth-card-header {
-    dis
-} */
