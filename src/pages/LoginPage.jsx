@@ -1,11 +1,13 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+
 import "../styles/main.css";
 import "../styles/authentication.css";
+
+import { ACCESS_TOKEN } from "../lib/constants";
 import AuthHeader from "../components/AuthHeader";
 import AuthForm from "../components/AuthForm";
-
-const DATA_DUMMY = "admin";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -16,7 +18,7 @@ export default function LoginPage() {
 
   const navigate = useNavigate();
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
 
@@ -25,8 +27,7 @@ export default function LoginPage() {
       return;
     }
 
-    const credsAreValid =
-      username.trim() === DATA_DUMMY && password.trim() === DATA_DUMMY;
+    const credsAreValid = await Login(username, password);
 
     setErrorLogin(!credsAreValid);
 
@@ -54,6 +55,12 @@ export default function LoginPage() {
     }
   };
 
+  useEffect(() => {
+    if (ACCESS_TOKEN) {
+      navigate("/home");
+    }
+  }, [navigate]);
+
   return (
     <div className="auth-page login-page">
       <main className="auth-card">
@@ -80,4 +87,30 @@ export default function LoginPage() {
       </main>
     </div>
   );
+}
+
+async function Login(username, password) {
+  const options = {
+    method: "POST",
+    url: "https://dytuputtiertanijmjev.supabase.co/auth/v1/token",
+    params: { grant_type: "password" },
+    headers: {
+      Authorization: "Bearer   sb_secret_PFrzVsZnNPvV3apbguclsw_QIUOy3pX",
+      "Content-Type": "application/json",
+      apikey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR5dHVwdXR0aWVydGFuaWptamV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI3NDcwMTcsImV4cCI6MjEwODMyMzAxN30.9j8Ur3SGzGbvq6RZlVUjrrSZnZ-Glyrtypi2CbPTDlA",
+    },
+    data: { email: username, password: password },
+  };
+
+  try {
+    const { data } = await axios.request(options);
+    console.log(data);
+
+    localStorage.setItem("token", data.access_token);
+
+    return true;
+  } catch (error) {
+    console.error(error);
+  }
 }

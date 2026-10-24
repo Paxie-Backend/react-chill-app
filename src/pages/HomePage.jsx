@@ -1,116 +1,174 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 import "../styles/homepage.css";
+import { API_KEY } from "../lib/constants";
+
 import NavBar from "../components/NavBar";
 import HeroSection from "../components/HeroSection";
-import ContinueWatchingSection from "../components/ContinueWatchingSection";
-import SubCardSection from "../components/SubCardSection";
+import CarouselHorizontal from "../components/CarouselHorizontal";
+import CardHorizontal from "../components/CardHorizontal";
+import Carousel from "../components/Carousel";
+import Card from "../components/Card";
 
 export default function HomePage() {
+  const [movieRecent, setMovieRecent] = useState([]);
+  const [movieTopRating, setMovieTopRating] = useState([]);
+  const [movieTrending, setMovieTrending] = useState([]);
+
+  const getRecentMovie = async () => {
+    const token = localStorage.getItem("token");
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: "https://dytuputtiertanijmjev.supabase.co/rest/v1/video?select=*&type=eq.new_release",
+      headers: {
+        apikey: API_KEY,
+
+        Authorization: token,
+      },
+    };
+
+    try {
+      const { data } = await axios.request(config);
+      return data;
+    } catch (error) {
+      throw new Error("Failed to fetch resource", error);
+    }
+  };
+
+  const getTrendingMovie = async () => {
+    const token = localStorage.getItem("token");
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: "https://dytuputtiertanijmjev.supabase.co/rest/v1/video?select=*&type=eq.trending",
+      headers: {
+        apikey: API_KEY,
+        Authorization: token,
+      },
+    };
+
+    try {
+      const { data } = await axios.request(config);
+      return data;
+    } catch (error) {
+      throw new Error("Failed to fetch resource", error);
+    }
+  };
+
+  const getTopRatingMovie = async () => {
+    const token = localStorage.getItem("token");
+    let config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: "https://dytuputtiertanijmjev.supabase.co/rest/v1/video?select=*&type=eq.top_rating",
+      headers: {
+        apikey: API_KEY,
+        Authorization: token,
+      },
+    };
+
+    try {
+      const { data } = await axios.request(config);
+      return data;
+    } catch (error) {
+      throw new Error("Failed to fetch resource", error);
+    }
+  };
+
+  useEffect(() => {
+    let ignore = false;
+
+    getRecentMovie()
+      .then((data) => {
+        if (!ignore) setMovieRecent(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let ignore = false;
+
+    getTopRatingMovie()
+      .then((data) => {
+        if (!ignore) setMovieTopRating(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let ignore = false;
+
+    getTrendingMovie()
+      .then((data) => {
+        if (!ignore) setMovieTrending(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
   return (
     <div className="homepage-container">
       <NavBar />
       <main>
         <HeroSection />
-        <ContinueWatchingSection />
-        <SubCardSection />
-        <section className="sub-card-section">
-          <h2>Film Trending</h2>
-          <div className="movie-list">
-            <article className="movie-card">
-              <span className="top-10-info">Top 10</span>
-              <img
-                src="assets/images/posters/the-tomorrow-war-poster.png"
-                alt="The tomorrow War"
-              />
-            </article>
-            <article className="movie-card">
-              <span className="top-10-info">Top 10</span>
-              <img
-                src="assets/images/posters/antman-wasp-poster.png"
-                alt="Jurassic World"
-              />
-            </article>
-            <article className="movie-card">
-              <span className="top-10-info">Top 10</span>
-              <img
-                src="assets/images/posters/guardian-of-the-galaxy-poster.png"
-                alt="Guardian of the Galaxy"
-              />
-            </article>
-            <article className="movie-card">
-              <span className="top-10-info">Top 10</span>
-              <img
-                src="assets/images/posters/a-man-called-otto-poster.png"
-                alt="A man called Otto"
-              />
-            </article>
-            <article className="movie-card">
-              <span className="top-10-info">Top 10</span>
-              <img
-                src="assets/images/posters/the-little-mermaid.png"
-                alt="My Little Mermaid"
-              />
-            </article>
-          </div>
-          <img
-            className="arrow-left"
-            src="assets/images/arrow-left.svg"
-            alt="Left Arrow"
-          />
-          <img
-            className="arrow-right"
-            src="assets/images/arrow-right.svg"
-            alt="Right Arrow"
-          />
-        </section>
-        <section className="sub-card-section">
-          <h2>Rilis Baru</h2>
-          <div className="movie-list">
-            <article className="movie-card">
-              <span className="top-10-info">Top 10</span>
-              <img
-                src="assets/images/posters/the-little-mermaid.png"
-                alt="The little Mermaid"
-              />
-            </article>
-            <article className="movie-card">
-              <span className="new-ep-info">Episode Baru</span>
-              <img
-                src="assets/images/posters/duty-after-school.png"
-                alt="Duty after School"
-              />
-            </article>
-            <article className="movie-card">
-              <span className="top-10-info">Top 10</span>
-              <img
-                src="assets/images/posters/big-hero-six.png"
-                alt="Big hero Six"
-              />
-            </article>
-            <article className="movie-card">
-              <span className="new-ep-info">Episode Baru</span>
-              <img
-                src="assets/images/posters/all-of-us-are-dead-poster.png"
-                alt="All of us Are Dead"
-              />
-            </article>
-            <article className="movie-card">
-              <img
-                src="assets/images/posters/missing-poster.png"
-                alt="Missing"
-              />
-            </article>
-          </div>
-          <img
-            className="arrow-left"
-            src="assets/images/arrow-left.svg"
-            alt="Left Arrow"
-          />
-          <img
-            className="arrow-right"
-            src="assets/images/arrow-right.svg"
-            alt="Right Arrow"
-          />
-        </section>
+        <CarouselHorizontal>
+          {movieTrending.map((item) => (
+            <CardHorizontal
+              title={item.name}
+              image={item.cover_url}
+              key={item.id}
+            />
+          ))}
+        </CarouselHorizontal>
+        <Carousel title="Top Rating Film dan Series Hari ini">
+          {movieTopRating.map((item) => (
+            <Card
+              title={item.year}
+              image={item.banner_url}
+              key={item.id}
+              newEp={item.is_new_episode}
+            />
+          ))}
+        </Carousel>
+        <Carousel title="Film Trending">
+          {movieTrending.map((item) => (
+            <Card
+              title={item.name}
+              image={item.banner_url}
+              key={item.id}
+              newEp={item.is_new_episode}
+            />
+          ))}
+        </Carousel>
+        <Carousel title="Rilis Baru">
+          {movieRecent.map((item) => (
+            <Card
+              title={item.name}
+              image={item.banner_url}
+              key={item.id}
+              newEp={item.is_new_episode}
+            />
+          ))}
+        </Carousel>
       </main>
       <footer>
         <div className="footer-content-wrapper">
