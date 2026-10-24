@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import "../styles/homepage.css";
-import { API_KEY } from "../lib/constants";
+import { API_KEY, ACCESS_TOKEN } from "../lib/constants";
 
 import NavBar from "../components/NavBar";
 import HeroSection from "../components/HeroSection";
@@ -17,7 +17,6 @@ export default function HomePage() {
   const [movieTrending, setMovieTrending] = useState([]);
 
   const getRecentMovie = async () => {
-    const token = localStorage.getItem("token");
     let config = {
       method: "get",
       maxBodyLength: Infinity,
@@ -25,7 +24,7 @@ export default function HomePage() {
       headers: {
         apikey: API_KEY,
 
-        Authorization: token,
+        Authorization: ACCESS_TOKEN,
       },
     };
 
@@ -38,14 +37,14 @@ export default function HomePage() {
   };
 
   const getTrendingMovie = async () => {
-    const token = localStorage.getItem("token");
+    const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
     let config = {
       method: "get",
       maxBodyLength: Infinity,
       url: "https://dytuputtiertanijmjev.supabase.co/rest/v1/video?select=*&type=eq.trending",
       headers: {
         apikey: API_KEY,
-        Authorization: token,
+        Authorization: ACCESS_TOKEN,
       },
     };
 
@@ -58,14 +57,14 @@ export default function HomePage() {
   };
 
   const getTopRatingMovie = async () => {
-    const token = localStorage.getItem("token");
+    const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
     let config = {
       method: "get",
       maxBodyLength: Infinity,
       url: "https://dytuputtiertanijmjev.supabase.co/rest/v1/video?select=*&type=eq.top_rating",
       headers: {
         apikey: API_KEY,
-        Authorization: token,
+        Authorization: ACCESS_TOKEN,
       },
     };
 
