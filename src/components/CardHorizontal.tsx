@@ -1,4 +1,9 @@
-export default function CardHorizontal(props) {
+interface ICardHorizontalProps {
+  title: string;
+  image: string;
+}
+
+export default function CardHorizontal(props: Readonly<ICardHorizontalProps>) {
   const { title, image } = props;
   return (
     <article className="movie-card">

@@ -8,16 +8,16 @@ import AuthForm from "../components/AuthForm";
 const DATA_DUMMY = "admin";
 
 export default function RegisterPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [errorLogin, setErrorLogin] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordConfirm, setPasswordConfirm] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [errorLogin, setErrorLogin] = useState<boolean>(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
 
@@ -31,7 +31,7 @@ export default function RegisterPage() {
       return;
     }
 
-    const credsAreValid =
+    const credsAreValid: boolean =
       username.trim() === DATA_DUMMY &&
       password.trim() === DATA_DUMMY &&
       passwordConfirm.trim() === DATA_DUMMY;
@@ -47,15 +47,15 @@ export default function RegisterPage() {
     setPasswordConfirm("");
   };
 
-  const handleUsername = (e) => {
+  const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
 
-  const handlePassword = (e) => {
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handlePasswordConfirm = (e) => {
+  const handlePasswordConfirm = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordConfirm(e.target.value);
   };
 
@@ -70,11 +70,7 @@ export default function RegisterPage() {
   return (
     <div className="auth-page register-page">
       <main className="auth-card">
-        <AuthHeader
-          title={"Daftar"}
-          greeting={"Selamat datang!"}
-          isError={errorLogin}
-        />
+        <AuthHeader title={"Daftar"} greeting={"Selamat datang!"} isError={errorLogin} />
         <AuthForm
           handleFormSubmit={handleFormSubmit}
           handleUsername={handleUsername}

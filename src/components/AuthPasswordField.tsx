@@ -1,4 +1,23 @@
-export default function AuthPasswordField({ children, ...props }) {
+import type { ReactNode } from "react";
+
+interface IAuthPasswordFieldProps {
+  id: string;
+  name: string;
+  type: string;
+  placeholder: string;
+  required: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  handleShowPassword: () => void;
+  submitted: boolean;
+  errorMsg: string;
+  children: ReactNode;
+}
+
+export default function AuthPasswordField({
+  children,
+  ...props
+}: Readonly<IAuthPasswordFieldProps>) {
   const { handleShowPassword, submitted, errorMsg, ...resProps } = props;
   return (
     <>

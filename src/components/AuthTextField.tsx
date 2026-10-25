@@ -1,4 +1,15 @@
-export default function AuthTextField(props) {
+interface AuthTextFieldProps {
+  submitted: boolean;
+  errorMsg: string;
+  value: string;
+  id: string;
+  name: string;
+  type: string;
+  placeholder: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export default function AuthTextField(props: Readonly<AuthTextFieldProps>) {
   const { submitted, errorMsg, ...resProps } = props;
   return (
     <>

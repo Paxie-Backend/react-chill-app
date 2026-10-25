@@ -1,6 +1,13 @@
 import { NavLink } from "react-router";
 
-export default function AuthFormLink(props) {
+interface IAuthFormLinkProps {
+  linkDesc: string;
+  navigateTo: string;
+  linkText: string;
+  isLoginPage: boolean;
+}
+
+export default function AuthFormLink(props: Readonly<IAuthFormLinkProps>) {
   const { linkDesc, navigateTo, linkText, isLoginPage } = props;
 
   return (
@@ -10,7 +17,7 @@ export default function AuthFormLink(props) {
       </p>
       {isLoginPage ? (
         <p>
-          <NavLink>Lupa kata sandi?</NavLink>
+          <NavLink to="#">Lupa kata sandi?</NavLink>
         </p>
       ) : null}
     </div>

@@ -1,4 +1,10 @@
-export default function Card(props) {
+interface ICardProps {
+  title: string;
+  image: string;
+  newEp: boolean;
+}
+
+export default function Card(props: Readonly<ICardProps>) {
   const { image, title, newEp } = props;
 
   return (

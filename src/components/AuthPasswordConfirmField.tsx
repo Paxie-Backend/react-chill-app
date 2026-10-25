@@ -1,6 +1,17 @@
 import AuthFormLink from "./AuthFormLink";
 
-export default function AuthPasswordConfirmField(props) {
+interface IAuthPasswordConfirmFieldProps {
+  handlePasswordConfirm?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  submitted: boolean;
+  password: string;
+  passwordConfirm?: string;
+  navigateTo: string;
+  linkDesc: string;
+  linkText: string;
+  isLoginPage: boolean;
+}
+
+export default function AuthPasswordConfirmField(props: Readonly<IAuthPasswordConfirmFieldProps>) {
   const {
     handlePasswordConfirm,
     submitted,
@@ -9,6 +20,7 @@ export default function AuthPasswordConfirmField(props) {
     navigateTo,
     linkDesc,
     linkText,
+    isLoginPage,
   } = props;
 
   return (
@@ -35,10 +47,7 @@ export default function AuthPasswordConfirmField(props) {
         className="body-small-regular error-label"
         style={{
           display:
-            submitted &&
-            password.trim() &&
-            passwordConfirm.trim() &&
-            password !== passwordConfirm
+            submitted && password.trim() && passwordConfirm?.trim() && password !== passwordConfirm
               ? "block"
               : "none",
         }}
@@ -49,6 +58,7 @@ export default function AuthPasswordConfirmField(props) {
         linkDesc={linkDesc}
         linkText={linkText}
         navigateTo={navigateTo}
+        isLoginPage={isLoginPage}
       />
     </div>
   );

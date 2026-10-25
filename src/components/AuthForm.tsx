@@ -1,10 +1,28 @@
-import AuthAction from "../components/AuthAction";
+import AuthAction from "./AuthAction";
 import AuthTextField from "./AuthTextField";
 import AuthPasswordField from "./AuthPasswordField";
 import AuthFormLink from "./AuthFormLink";
-import AuthPasswordConfirmField from "../components/AuthPasswordConfirmField";
+import AuthPasswordConfirmField from "./AuthPasswordConfirmField";
 
-export default function AuthForm(props) {
+interface AuthFormProps {
+  handleFormSubmit: (e: React.SubmitEvent<HTMLFormElement>) => void;
+  handleUsername: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleShowPassword: () => void;
+  username: string;
+  password: string;
+  showPassword: boolean;
+  submitted: boolean;
+  linkDesc: string;
+  linkText: string;
+  textBtn: string;
+  navigateTo: string;
+  isRegisterPage?: boolean;
+  handlePasswordConfirm?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  passwordConfirm?: string;
+}
+
+export default function AuthForm(props: Readonly<AuthFormProps>) {
   const {
     handleFormSubmit,
     handleUsername,
@@ -46,6 +64,7 @@ export default function AuthForm(props) {
           name="password"
           type={showPassword ? "text" : "password"}
           placeholder="Masukkan kata sandi"
+          required={true}
           submitted={submitted}
           value={password}
           errorMsg="Password is required"
@@ -71,6 +90,7 @@ export default function AuthForm(props) {
           navigateTo={navigateTo}
           linkDesc={linkDesc}
           linkText={linkText}
+          isLoginPage={!isRegisterPage}
         />
       ) : null}
 

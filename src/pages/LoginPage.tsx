@@ -9,16 +9,17 @@ import { ACCESS_TOKEN } from "../lib/constants";
 import AuthHeader from "../components/AuthHeader";
 import AuthForm from "../components/AuthForm";
 
+
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [errorLogin, setErrorLogin] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [errorLogin, setErrorLogin] = useState<boolean>(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (e: React.SubmitEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setSubmitted(true);
 
@@ -39,15 +40,15 @@ export default function LoginPage() {
     setPassword("");
   };
 
-  const handleUsername = (e) => {
+  const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
 
-  const handlePassword = (e) => {
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleShowPassword = () => {
+  const handleShowPassword = (): void => {
     if (showPassword) {
       setShowPassword(false);
     } else {
@@ -64,11 +65,7 @@ export default function LoginPage() {
   return (
     <div className="auth-page login-page">
       <main className="auth-card">
-        <AuthHeader
-          title={"Masuk"}
-          greeting={"Selamat datang kembali!"}
-          isError={errorLogin}
-        />
+        <AuthHeader title={"Masuk"} greeting={"Selamat datang kembali!"} isError={errorLogin} />
         <AuthForm
           handleFormSubmit={handleFormSubmit}
           handleUsername={handleUsername}
@@ -89,7 +86,7 @@ export default function LoginPage() {
   );
 }
 
-async function Login(username, password) {
+async function Login(username: string, password: string) {
   const options = {
     method: "POST",
     url: "https://dytuputtiertanijmjev.supabase.co/auth/v1/token",
