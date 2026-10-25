@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -8,7 +7,7 @@ import "../styles/authentication.css";
 import { ACCESS_TOKEN } from "../lib/constants";
 import AuthHeader from "../components/AuthHeader";
 import AuthForm from "../components/AuthForm";
-
+import { authApi } from "../utils/auth-api";
 
 export default function LoginPage() {
   const [username, setUsername] = useState<string>("");
@@ -28,7 +27,7 @@ export default function LoginPage() {
       return;
     }
 
-    const credsAreValid = await Login(username, password);
+    const credsAreValid = await login(username, password);
 
     setErrorLogin(!credsAreValid);
 
@@ -86,28 +85,19 @@ export default function LoginPage() {
   );
 }
 
-async function Login(username: string, password: string) {
-  const options = {
-    method: "POST",
-    url: "https://dytuputtiertanijmjev.supabase.co/auth/v1/token",
-    params: { grant_type: "password" },
-    headers: {
-      Authorization: "Bearer   sb_secret_PFrzVsZnNPvV3apbguclsw_QIUOy3pX",
-      "Content-Type": "application/json",
-      apikey:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR5dHVwdXR0aWVydGFuaWptamV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI3NDcwMTcsImV4cCI6MjEwODMyMzAxN30.9j8Ur3SGzGbvq6RZlVUjrrSZnZ-Glyrtypi2CbPTDlA",
-    },
-    data: { email: username, password: password },
-  };
+async function login(username: string, password: string) {
+  const payload = { email: username, password: password };
 
   try {
-    const { data } = await axios.request(options);
-    console.log(data);
+    const { data } = await authApi.post("/auth/v1/token", payload, {
+      params: { grant_type: "password" },
+    });
 
-    localStorage.setItem("token", data.access_token);
+    localStorage.setItem("access_token", data.access_token);
 
     return true;
   } catch (error) {
     console.error(error);
+    return false;
   }
 }

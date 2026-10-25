@@ -1,6 +1,6 @@
 interface ICardHorizontalProps {
-  title: string;
-  image: string;
+  title?: string;
+  image?: string;
 }
 
 export default function CardHorizontal(props: Readonly<ICardHorizontalProps>) {

@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router";
 import { useState } from "react";
+
 import "../styles/main.css";
 import "../styles/authentication.css";
+
 import AuthHeader from "../components/AuthHeader";
 import AuthForm from "../components/AuthForm";
 
-const DATA_DUMMY = "admin";
+import { authApi } from "../utils/auth-api";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState<string>("");
@@ -17,7 +19,7 @@ export default function RegisterPage() {
 
   const navigate = useNavigate();
 
-  const handleFormSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
 
@@ -31,10 +33,7 @@ export default function RegisterPage() {
       return;
     }
 
-    const credsAreValid: boolean =
-      username.trim() === DATA_DUMMY &&
-      password.trim() === DATA_DUMMY &&
-      passwordConfirm.trim() === DATA_DUMMY;
+    const credsAreValid: boolean = await register(username, password);
 
     setErrorLogin(!credsAreValid);
 
@@ -45,6 +44,21 @@ export default function RegisterPage() {
     setUsername("");
     setPassword("");
     setPasswordConfirm("");
+  };
+
+  const register = async (username: string, password: string) => {
+    const payload = { email: username, password: password };
+
+    try {
+      const { data } = await authApi.post("/auth/v1/signup", payload, {
+        params: { grant_type: "password" },
+      });
+      localStorage.setItem("access_token", data.access_token);
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
   };
 
   const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {

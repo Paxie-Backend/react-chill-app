@@ -1,7 +1,7 @@
 interface ICardProps {
-  title: string;
-  image: string;
-  newEp: boolean;
+  title?: string;
+  image?: string;
+  newEp?: boolean;
 }
 
 export default function Card(props: Readonly<ICardProps>) {

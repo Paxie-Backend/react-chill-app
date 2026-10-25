@@ -1,9 +1,11 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import type { AxiosRequestConfig } from "axios";
 
 import "../styles/homepage.css";
 
-import { API_KEY, ACCESS_TOKEN } from "../lib/constants";
+import { API_KEY } from "../lib/constants";
+import { authApi } from "../utils/auth-api";
+import type { IResponseMovie } from "../types/response-movie";
 
 import NavBar from "../components/NavBar";
 import HeroSection from "../components/HeroSection";
@@ -13,67 +15,55 @@ import Carousel from "../components/Carousel";
 import Card from "../components/Card";
 
 export default function HomePage() {
-  const [movieRecent, setMovieRecent] = useState([]);
-  const [movieTopRating, setMovieTopRating] = useState([]);
-  const [movieTrending, setMovieTrending] = useState([]);
+  const [movieRecent, setMovieRecent] = useState<IResponseMovie[]>([]);
+  const [movieTopRating, setMovieTopRating] = useState<IResponseMovie[]>([]);
+  const [movieTrending, setMovieTrending] = useState<IResponseMovie[]>([]);
 
   const getRecentMovie = async () => {
-    let config = {
-      method: "get",
+    const movieRecentParams = { select: "*", type: "eq.new_release" };
+    const config: AxiosRequestConfig = {
+      headers: { apikey: API_KEY },
       maxBodyLength: Infinity,
-      url: "https://dytuputtiertanijmjev.supabase.co/rest/v1/video?select=*&type=eq.new_release",
-      headers: {
-        apikey: API_KEY,
-
-        Authorization: ACCESS_TOKEN,
-      },
+      params: movieRecentParams,
     };
 
     try {
-      const { data } = await axios.request(config);
+      const { data } = await authApi.get("/rest/v1/video", config);
       return data;
-    } catch (error) {
-      throw new Error("Failed to fetch resource", error);
+    } catch (error: any) {
+      throw new Error("Failed to fetch resource: ", error);
     }
   };
 
   const getTrendingMovie = async () => {
-    const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
-    let config = {
-      method: "get",
+    const movieTrendingParams = { select: "*", type: "eq.trending" };
+    const config: AxiosRequestConfig = {
+      headers: { apikey: API_KEY },
       maxBodyLength: Infinity,
-      url: "https://dytuputtiertanijmjev.supabase.co/rest/v1/video?select=*&type=eq.trending",
-      headers: {
-        apikey: API_KEY,
-        Authorization: ACCESS_TOKEN,
-      },
+      params: movieTrendingParams,
     };
 
     try {
-      const { data } = await axios.request(config);
+      const { data } = await authApi("/rest/v1/video", config);
       return data;
-    } catch (error) {
-      throw new Error("Failed to fetch resource", error);
+    } catch (error: any) {
+      throw new Error("Failed to fetch resource: ", error);
     }
   };
 
   const getTopRatingMovie = async () => {
-    const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
-    let config = {
-      method: "get",
+    const movieTopRatingParams = { select: "*", type: "eq.top_rating" };
+    const config: AxiosRequestConfig = {
+      headers: { apikey: API_KEY },
       maxBodyLength: Infinity,
-      url: "https://dytuputtiertanijmjev.supabase.co/rest/v1/video?select=*&type=eq.top_rating",
-      headers: {
-        apikey: API_KEY,
-        Authorization: ACCESS_TOKEN,
-      },
+      params: movieTopRatingParams,
     };
 
     try {
-      const { data } = await axios.request(config);
+      const { data } = await authApi("/rest/v1/video?select=*&type=eq.top_rating", config);
       return data;
-    } catch (error) {
-      throw new Error("Failed to fetch resource", error);
+    } catch (error: any) {
+      throw new Error("Failed to fetch resource: ", error);
     }
   };
 
@@ -132,11 +122,7 @@ export default function HomePage() {
         <HeroSection />
         <CarouselHorizontal>
           {movieTrending.map((item) => (
-            <CardHorizontal
-              title={item.name}
-              image={item.cover_url}
-              key={item.id}
-            />
+            <CardHorizontal title={item.name} image={item.cover_url} key={item.id} />
           ))}
         </CarouselHorizontal>
         <Carousel title="Top Rating Film dan Series Hari ini">
