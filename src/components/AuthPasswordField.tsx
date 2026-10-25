@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { usePasswordContext, useSubmittedContext } from "../context/user-auth";
 
 interface IAuthPasswordFieldProps {
   id: string;
@@ -7,9 +8,7 @@ interface IAuthPasswordFieldProps {
   placeholder: string;
   required: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
   handleShowPassword: () => void;
-  submitted: boolean;
   errorMsg: string;
   children: ReactNode;
 }
@@ -18,14 +17,17 @@ export default function AuthPasswordField({
   children,
   ...props
 }: Readonly<IAuthPasswordFieldProps>) {
-  const { handleShowPassword, submitted, errorMsg, ...resProps } = props;
+  const { handleShowPassword, errorMsg, ...resProps } = props;
+  const submitted = useSubmittedContext();
+  const password = usePasswordContext();
+
   return (
     <>
-      <input {...resProps} />
+      <input {...resProps} value={password} />
       <span
         className="body-small-regular error-label"
         style={{
-          display: submitted && !resProps.value.trim() ? "block" : "none",
+          display: submitted && !password.trim() ? "block" : "none",
         }}
       >
         {errorMsg}

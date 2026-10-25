@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 import "../styles/main.css";
 import "../styles/authentication.css";
@@ -8,6 +8,7 @@ import AuthHeader from "../components/AuthHeader";
 import AuthForm from "../components/AuthForm";
 
 import { authApi } from "../utils/auth-api";
+import { PasswordContext, SubmittedContext, UsernameContext } from "../context/user-auth";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState<string>("");
@@ -18,6 +19,8 @@ export default function RegisterPage() {
   const [submitted, setSubmitted] = useState<boolean>(false);
 
   const navigate = useNavigate();
+
+  const usernameContextValue = useMemo(() => ({ username, setUsername }), [username, setUsername]);
 
   const handleFormSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -85,23 +88,26 @@ export default function RegisterPage() {
     <div className="auth-page register-page">
       <main className="auth-card">
         <AuthHeader title={"Daftar"} greeting={"Selamat datang!"} isError={errorLogin} />
-        <AuthForm
-          handleFormSubmit={handleFormSubmit}
-          handleUsername={handleUsername}
-          handlePassword={handlePassword}
-          handleShowPassword={handleShowPassword}
-          username={username}
-          password={password}
-          showPassword={showPassword}
-          submitted={submitted}
-          linkDesc="Sudah punya akun?"
-          linkText="Masuk"
-          textBtn="Daftar"
-          navigateTo="/login"
-          isRegisterPage={true}
-          handlePasswordConfirm={handlePasswordConfirm}
-          passwordConfirm={passwordConfirm}
-        ></AuthForm>
+        <UsernameContext.Provider value={usernameContextValue}>
+          <PasswordContext.Provider value={password}>
+            <SubmittedContext.Provider value={submitted}>
+              <AuthForm
+                handleFormSubmit={handleFormSubmit}
+                handleUsername={handleUsername}
+                handlePassword={handlePassword}
+                handleShowPassword={handleShowPassword}
+                showPassword={showPassword}
+                linkDesc="Sudah punya akun?"
+                linkText="Masuk"
+                textBtn="Daftar"
+                navigateTo="/login"
+                isRegisterPage={true}
+                handlePasswordConfirm={handlePasswordConfirm}
+                passwordConfirm={passwordConfirm}
+              ></AuthForm>
+            </SubmittedContext.Provider>
+          </PasswordContext.Provider>
+        </UsernameContext.Provider>
       </main>
     </div>
   );

@@ -3,10 +3,7 @@ export interface AuthFormProps {
   handleUsername: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleShowPassword: () => void;
-  username: string;
-  password: string;
   showPassword: boolean;
-  submitted: boolean;
   linkDesc: string;
   linkText: string;
   textBtn: string;

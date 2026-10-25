@@ -1,7 +1,7 @@
+import { useSubmittedContext, useUsernameContext } from "../context/user-auth";
+
 interface AuthTextFieldProps {
-  submitted: boolean;
   errorMsg: string;
-  value: string;
   id: string;
   name: string;
   type: string;
@@ -10,15 +10,18 @@ interface AuthTextFieldProps {
 }
 
 export default function AuthTextField(props: Readonly<AuthTextFieldProps>) {
-  const { submitted, errorMsg, ...resProps } = props;
+  const { errorMsg, ...resProps } = props;
+  const {username} = useUsernameContext();
+  const submitted = useSubmittedContext();
+
   return (
     <>
-      <input {...resProps} />
+      <input {...resProps} value={username} />
 
       <span
         className="body-small-regular error-label"
         style={{
-          display: submitted && !resProps.value?.trim() ? "block" : "none",
+          display: submitted && !username?.trim() ? "block" : "none",
         }}
       >
         {errorMsg}

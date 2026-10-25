@@ -12,10 +12,7 @@ export default function AuthForm(props: Readonly<AuthFormProps>) {
     handleUsername,
     handlePassword,
     handleShowPassword,
-    username,
-    password,
     showPassword,
-    submitted,
     linkDesc,
     linkText,
     textBtn,
@@ -34,8 +31,6 @@ export default function AuthForm(props: Readonly<AuthFormProps>) {
           name="username"
           type="text"
           placeholder="Masukkan username"
-          submitted={submitted}
-          value={username}
           errorMsg="Username is required"
           onChange={handleUsername}
         />
@@ -49,8 +44,6 @@ export default function AuthForm(props: Readonly<AuthFormProps>) {
           type={showPassword ? "text" : "password"}
           placeholder="Masukkan kata sandi"
           required={true}
-          submitted={submitted}
-          value={password}
           errorMsg="Password is required"
           handleShowPassword={handleShowPassword}
           onChange={handlePassword}
@@ -67,9 +60,7 @@ export default function AuthForm(props: Readonly<AuthFormProps>) {
       </div>
       {isRegisterPage ? (
         <AuthPasswordConfirmField
-          password={password}
           passwordConfirm={passwordConfirm}
-          submitted={submitted}
           handlePasswordConfirm={handlePasswordConfirm}
           navigateTo={navigateTo}
           linkDesc={linkDesc}

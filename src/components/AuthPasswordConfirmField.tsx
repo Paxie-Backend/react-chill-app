@@ -1,9 +1,8 @@
+import { usePasswordContext, useSubmittedContext } from "../context/user-auth";
 import AuthFormLink from "./AuthFormLink";
 
 interface IAuthPasswordConfirmFieldProps {
   handlePasswordConfirm?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  submitted: boolean;
-  password: string;
   passwordConfirm?: string;
   navigateTo: string;
   linkDesc: string;
@@ -14,14 +13,15 @@ interface IAuthPasswordConfirmFieldProps {
 export default function AuthPasswordConfirmField(props: Readonly<IAuthPasswordConfirmFieldProps>) {
   const {
     handlePasswordConfirm,
-    submitted,
-    password,
     passwordConfirm,
     navigateTo,
     linkDesc,
     linkText,
     isLoginPage,
   } = props;
+
+  const submitted = useSubmittedContext();
+  const password = usePasswordContext();
 
   return (
     <div className="form-group">
