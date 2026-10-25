@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import "../styles/homepage.css";
+
 import { API_KEY, ACCESS_TOKEN } from "../lib/constants";
 
 import NavBar from "../components/NavBar";
