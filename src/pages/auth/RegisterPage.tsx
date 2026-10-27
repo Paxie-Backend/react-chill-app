@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router";
 import { useState, useMemo } from "react";
 
-import "../styles/main.css";
-import "../styles/authentication.css";
+import "../../styles/main.css";
+import "../../styles/authentication.css";
 
-import AuthHeader from "../components/AuthHeader";
-import AuthForm from "../components/AuthForm";
+import AuthHeader from "../../components/auth/AuthHeader";
+import AuthForm from "../../components/auth/AuthForm";
 
-import { authApi } from "../utils/auth-api";
-import { PasswordContext, SubmittedContext, UsernameContext } from "../context/user-auth";
+import { authApi } from "../../utils/auth-api";
+import { PasswordContext, SubmittedContext, UsernameContext } from "../../context/user-auth";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState<string>("");

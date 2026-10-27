@@ -1,8 +1,8 @@
 import { createBrowserRouter, redirect } from "react-router";
 
-import RegisterPage from "../pages/RegisterPage";
-import LoginPage from "../pages/LoginPage";
-import HomePage from "../pages/HomePage";
+import RegisterPage from "../pages/auth/RegisterPage";
+import LoginPage from "../pages/auth/LoginPage";
+import HomePage from "../pages/home/HomePage";
 
 const middlewareLogin = () => {
   const access_token = localStorage.getItem("access_token");

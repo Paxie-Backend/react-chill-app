@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { usePasswordContext, useSubmittedContext } from "../context/user-auth";
+import { usePasswordContext, useSubmittedContext } from "../../context/user-auth";
 
 interface IAuthPasswordFieldProps {
   id: string;

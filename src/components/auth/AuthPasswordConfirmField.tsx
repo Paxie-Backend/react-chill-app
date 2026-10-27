@@ -1,4 +1,4 @@
-import { usePasswordContext, useSubmittedContext } from "../context/user-auth";
+import { usePasswordContext, useSubmittedContext } from "../../context/user-auth";
 import AuthFormLink from "./AuthFormLink";
 
 interface IAuthPasswordConfirmFieldProps {
