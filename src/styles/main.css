@@ -211,7 +211,7 @@ body {
   color: hsla(225, 2%, 62%, 1);
 }
 
-@media screen and (width <= 360px) {
+@media screen and (width <= 560px) {
   .auth-card {
     margin-left: 27px;
     margin-right: 27px;
