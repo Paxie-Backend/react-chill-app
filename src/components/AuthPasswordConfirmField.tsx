@@ -11,17 +11,11 @@ interface IAuthPasswordConfirmFieldProps {
 }
 
 export default function AuthPasswordConfirmField(props: Readonly<IAuthPasswordConfirmFieldProps>) {
-  const {
-    handlePasswordConfirm,
-    passwordConfirm,
-    navigateTo,
-    linkDesc,
-    linkText,
-    isLoginPage,
-  } = props;
+  const { handlePasswordConfirm, passwordConfirm, navigateTo, linkDesc, linkText, isLoginPage } =
+    props;
 
   const submitted = useSubmittedContext();
-  const password = usePasswordContext();
+  const { password } = usePasswordContext();
 
   return (
     <div className="form-group">

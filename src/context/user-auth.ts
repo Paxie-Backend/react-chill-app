@@ -5,8 +5,13 @@ interface IUsernameContext {
   setUsername: (username: string) => void;
 }
 
+interface IPasswordContext {
+  password: string;
+  setPassword: (username: string) => void;
+}
+
 export const UsernameContext = createContext<IUsernameContext | undefined>(undefined);
-export const PasswordContext = createContext<string | undefined>(undefined);
+export const PasswordContext = createContext<IPasswordContext | undefined>(undefined);
 export const SubmittedContext = createContext<boolean | undefined>(undefined);
 
 export function useUsernameContext() {

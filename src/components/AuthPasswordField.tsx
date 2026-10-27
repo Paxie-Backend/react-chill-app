@@ -19,7 +19,7 @@ export default function AuthPasswordField({
 }: Readonly<IAuthPasswordFieldProps>) {
   const { handleShowPassword, errorMsg, ...resProps } = props;
   const submitted = useSubmittedContext();
-  const password = usePasswordContext();
+  const { password } = usePasswordContext();
 
   return (
     <>

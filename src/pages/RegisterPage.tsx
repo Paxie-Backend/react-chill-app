@@ -21,6 +21,7 @@ export default function RegisterPage() {
   const navigate = useNavigate();
 
   const usernameContextValue = useMemo(() => ({ username, setUsername }), [username, setUsername]);
+  const passwordContextValue = useMemo(() => ({ password, setPassword }), [password, setPassword]);
 
   const handleFormSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -89,7 +90,7 @@ export default function RegisterPage() {
       <main className="auth-card">
         <AuthHeader title={"Daftar"} greeting={"Selamat datang!"} isError={errorLogin} />
         <UsernameContext.Provider value={usernameContextValue}>
-          <PasswordContext.Provider value={password}>
+          <PasswordContext.Provider value={passwordContextValue}>
             <SubmittedContext.Provider value={submitted}>
               <AuthForm
                 handleFormSubmit={handleFormSubmit}
