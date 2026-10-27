@@ -18,10 +18,15 @@ const middlewareHome = () => {
   }
 };
 
+const middlewareRoot = () => {
+    throw redirect("/login");
+};
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
-    loader: middlewareHome,
+    loader: middlewareRoot,
   },
   {
     path: "/home",
