@@ -20,6 +20,10 @@ const middlewareHome = () => {
 
 export const router = createBrowserRouter([
   {
+    path: "/",
+    loader: middlewareHome,
+  },
+  {
     path: "/home",
     Component: HomePage,
     loader: middlewareHome,

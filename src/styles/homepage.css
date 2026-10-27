@@ -141,7 +141,7 @@ ul li a {
 
   background-image:
     linear-gradient(to top, hsla(210, 8%, 10%, 1), hsla(0, 0%, 0%, 0)),
-    url(assets/images/bg-hero.png);
+    url(/assets/images/bg-hero.png);
   background-size: cover;
   background-position: center;
 }

@@ -10,9 +10,9 @@
 }
 
 .login-page {
-  background-image: url(assets/images/bg-image.jpg);
+  background-image: url(/assets/images/bg-image.jpg);
 }
 
 .register-page {
-  background-image: url(assets/images/bg-desktop-daftar.jpg);
+  background-image: url(/assets/images/bg-desktop-daftar.jpg);
 }
