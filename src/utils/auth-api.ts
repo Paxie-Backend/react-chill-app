@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_KEY, ACCESS_TOKEN } from "../lib/constants";
+import { API_KEY } from "../lib/constants";
 
 export const authApi = axios.create({
   baseURL: "https://dytuputtiertanijmjev.supabase.co",
@@ -11,8 +11,9 @@ export const authApi = axios.create({
 
 authApi.interceptors.request.use(
   (request) => {
-    if (ACCESS_TOKEN) {
-      request.headers["Authorization"] = `Bearer ${ACCESS_TOKEN}`;
+    const access_token = localStorage.getItem("access_token");
+    if (access_token) {
+      request.headers["Authorization"] = `Bearer ${access_token}`;
     }
     console.log("Request sent:", request.method?.toUpperCase(), request.url);
     return request;

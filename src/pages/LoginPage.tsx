@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import "../styles/main.css";
 import "../styles/authentication.css";
 
-import { ACCESS_TOKEN } from "../lib/constants";
 import AuthHeader from "../components/AuthHeader";
 import AuthForm from "../components/AuthForm";
 import { authApi } from "../utils/auth-api";
@@ -60,7 +59,8 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
-    if (ACCESS_TOKEN) {
+    const access_token = localStorage.getItem("access_token");
+    if (access_token) {
       navigate("/home");
     }
   }, [navigate]);
