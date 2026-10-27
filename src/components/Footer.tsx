@@ -1,4 +1,17 @@
+import { useState } from "react";
+
 export default function Footer() {
+  const [showGenre, setShowGenre] = useState(false);
+  const [showBantuan, setShowBantuan] = useState(false);
+
+  const handleShowGenre = () => {
+    showGenre ? setShowGenre(false) : setShowGenre(true);
+  };
+
+  const handleShowBantuan = () => {
+    showBantuan ? setShowBantuan(false) : setShowBantuan(true);
+  };
+
   return (
     <footer>
       <div className="footer-content-wrapper">
@@ -45,12 +58,12 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className="footer-dropdown">
-            <button className="footer-dropdown-button" type="button">
+          <div className="footer-dropdown ">
+            <button className="footer-dropdown-button" type="button" onClick={handleShowGenre}>
               <span>Genre</span>
               <img src="assets/images/chevron-right.svg" alt="arrow" />
             </button>
-            <div className="footer-dropdown-list">
+            <div className={showGenre ? "footer-dropdown-list open" : "footer-dropdown-list close"}>
               <p>Aksi</p>
               <p>Anak-anak</p>
               <p>Anime</p>
@@ -68,11 +81,13 @@ export default function Footer() {
             </div>
           </div>
           <div className="footer-dropdown">
-            <button className="footer-dropdown-button" type="button">
+            <button className="footer-dropdown-button" type="button" onClick={handleShowBantuan}>
               <span>Bantuan</span>
               <img src="assets/images/chevron-right.svg" alt="arrow" />
             </button>
-            <div className="footer-dropdown-list">
+            <div
+              className={showBantuan ? "footer-dropdown-list open" : "footer-dropdown-list close"}
+            >
               <p>FAQ</p>
               <p>Kontak Kami</p>
               <p>Privasi</p>
