@@ -3,7 +3,6 @@ import type { AxiosRequestConfig } from "axios";
 
 import "../styles/homepage.css";
 
-import { API_KEY } from "../lib/constants";
 import { authApi } from "../utils/auth-api";
 import type { IResponseMovie } from "../types/response-movie";
 
@@ -23,7 +22,7 @@ export default function HomePage() {
   const getRecentMovie = async () => {
     const movieRecentParams = { select: "*", type: "eq.new_release" };
     const config: AxiosRequestConfig = {
-      headers: { apikey: API_KEY },
+      headers: { apikey: import.meta.env.VITE_API_KEY },
       maxBodyLength: Infinity,
       params: movieRecentParams,
     };
@@ -39,7 +38,7 @@ export default function HomePage() {
   const getTrendingMovie = async () => {
     const movieTrendingParams = { select: "*", type: "eq.trending" };
     const config: AxiosRequestConfig = {
-      headers: { apikey: API_KEY },
+      headers: { apikey: import.meta.env.VITE_API_KEY },
       maxBodyLength: Infinity,
       params: movieTrendingParams,
     };
@@ -55,7 +54,7 @@ export default function HomePage() {
   const getTopRatingMovie = async () => {
     const movieTopRatingParams = { select: "*", type: "eq.top_rating" };
     const config: AxiosRequestConfig = {
-      headers: { apikey: API_KEY },
+      headers: { apikey: import.meta.env.VITE_API_KEY },
       maxBodyLength: Infinity,
       params: movieTopRatingParams,
     };

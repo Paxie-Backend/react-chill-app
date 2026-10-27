@@ -1,11 +1,10 @@
 import axios from "axios";
-import { API_KEY } from "../lib/constants";
 
 export const authApi = axios.create({
-  baseURL: "https://dytuputtiertanijmjev.supabase.co",
+  baseURL: import.meta.env.BASE_URL,
   headers: {
     "Content-Type": "application/json",
-    apikey: API_KEY,
+    apikey: import.meta.env.VITE_API_KEY,
   },
 });
 
