@@ -1,13 +1,13 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router";
 
-import "../../styles/main.css";
-import "../../styles/authentication.css";
+import "../styles/main.css";
+import "../styles/authentication.css";
 
-import AuthHeader from "../../components/auth/AuthHeader";
-import AuthForm from "../../components/auth/AuthForm";
-import { authApi } from "../../utils/auth-api";
-import { PasswordContext, SubmittedContext, UsernameContext } from "../../context/user-auth";
+import AuthHeader from "../components/AuthHeader";
+import AuthForm from "../components/AuthForm";
+import { authApi } from "../utils/auth-api";
+import { PasswordContext, SubmittedContext, UsernameContext } from "../context/user-auth";
 
 export default function LoginPage() {
   const [username, setUsername] = useState<string>("");

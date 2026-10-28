@@ -1,4 +1,4 @@
-import { useSubmittedContext, useUsernameContext } from "../../context/user-auth";
+import { useSubmittedContext, useUsernameContext } from "../context/user-auth";
 
 interface AuthTextFieldProps {
   errorMsg: string;

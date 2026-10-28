@@ -4,7 +4,7 @@ import AuthPasswordField from "./AuthPasswordField";
 import AuthFormLink from "./AuthFormLink";
 import AuthPasswordConfirmField from "./AuthPasswordConfirmField";
 
-import type { AuthFormProps } from "../../types/authform-props";
+import type { AuthFormProps } from "../types/authform-props";
 
 export default function AuthForm(props: Readonly<AuthFormProps>) {
   const {

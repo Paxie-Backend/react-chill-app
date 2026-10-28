@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import type { AxiosRequestConfig } from "axios";
 
-import "../../styles/homepage.css";
+import "../styles/homepage.css";
 
-import { authApi } from "../../utils/auth-api";
-import type { IResponseMovie } from "../../types/response-movie";
+import { authApi } from "../utils/auth-api";
+import type { IResponseMovie } from "../types/response-movie";
 
-import NavBar from "../../components/home/NavBar";
-import HeroSection from "../../components/home/HeroSection";
-import CarouselHorizontal from "../../components/home/CarouselHorizontal";
-import CardHorizontal from "../../components/home/CardHorizontal";
-import Carousel from "../../components/home/Carousel";
-import Card from "../../components/home/Card";
-import Footer from "../../components/home/Footer";
+import NavBar from "../components/NavBar";
+import HeroSection from "../components/HeroSection";
+import CarouselHorizontal from "../components/CarouselHorizontal";
+import CardHorizontal from "../components/CardHorizontal";
+import Carousel from "../components/Carousel";
+import Card from "../components/Card";
+import Footer from "../components/Footer";
 
 export default function HomePage() {
   const [movieRecent, setMovieRecent] = useState<IResponseMovie[]>([]);

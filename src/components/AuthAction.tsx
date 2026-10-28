@@ -1,5 +1,5 @@
-import "../../styles/authentication.css";
-import "../../styles/main.css";
+import "../styles/authentication.css";
+import "../styles/main.css";
 
 export default function AuthAction({ textBtn }: Readonly<{ textBtn: string }>) {
   return (
