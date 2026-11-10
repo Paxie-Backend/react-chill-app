@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
+import { localAuth } from "../utils/local-auth";
 
 export default function NavBar() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -9,7 +10,7 @@ export default function NavBar() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("access_token");
+    localAuth.deleteSession();
   };
 
   return (
@@ -43,7 +44,7 @@ export default function NavBar() {
             </li>
             <li>
               <img src="assets/images/exit-icon.svg" alt="Logout Icon" />
-              <NavLink to="#" onClick={handleLogout}>
+              <NavLink to="/login" onClick={handleLogout}>
                 Keluar
               </NavLink>
             </li>

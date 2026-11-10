@@ -6,8 +6,8 @@ import "../styles/authentication.css";
 
 import AuthHeader from "../components/AuthHeader";
 import AuthForm from "../components/AuthForm";
-import { authApi } from "../utils/auth-api";
 import { PasswordContext, SubmittedContext, UsernameContext } from "../context/user-auth";
+import { localAuth } from "../utils/local-auth";
 
 export default function LoginPage() {
   const [username, setUsername] = useState<string>("");
@@ -59,8 +59,7 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
-    const access_token = localStorage.getItem("access_token");
-    if (access_token) {
+    if (localAuth.hasSession()) {
       navigate("/home");
     }
   }, [navigate]);
@@ -93,16 +92,13 @@ export default function LoginPage() {
 }
 
 async function login(username: string, password: string) {
-  const payload = { email: username, password: password };
-
   try {
-    const { data } = await authApi.post("/auth/v1/token", payload, {
-      params: { grant_type: "password" },
-    });
+    const isValid = await localAuth.read(username, password);
+    if (isValid) {
+      localAuth.createSession();
+    }
 
-    localStorage.setItem("access_token", data.access_token);
-
-    return true;
+    return isValid;
   } catch (error) {
     console.error(error);
     return false;

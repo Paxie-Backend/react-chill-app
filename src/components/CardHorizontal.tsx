@@ -10,7 +10,7 @@ export default function CardHorizontal(props: Readonly<ICardHorizontalProps>) {
       <img src={image} alt={title} />
       <div className="movie-info">
         <p>{title}</p>
-        <img src={image} alt="Rating" />
+        <img src="/assets/images/star.svg" alt="Rating" />
       </div>
     </article>
   );

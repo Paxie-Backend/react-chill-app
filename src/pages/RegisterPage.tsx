@@ -7,8 +7,8 @@ import "../styles/authentication.css";
 import AuthHeader from "../components/AuthHeader";
 import AuthForm from "../components/AuthForm";
 
-import { authApi } from "../utils/auth-api";
 import { PasswordContext, SubmittedContext, UsernameContext } from "../context/user-auth";
+import { localAuth } from "../utils/local-auth";
 
 export default function RegisterPage() {
   const [username, setUsername] = useState<string>("");
@@ -37,7 +37,12 @@ export default function RegisterPage() {
       return;
     }
 
-    const credsAreValid: boolean = await register(username, password);
+    let credsAreValid = false;
+    try {
+      credsAreValid = await localAuth.create(username, password);
+    } catch (error) {
+      console.error("Failed to register user:", error);
+    }
 
     setErrorLogin(!credsAreValid);
 
@@ -48,21 +53,6 @@ export default function RegisterPage() {
     setUsername("");
     setPassword("");
     setPasswordConfirm("");
-  };
-
-  const register = async (username: string, password: string) => {
-    const payload = { email: username, password: password };
-
-    try {
-      const { data } = await authApi.post("/auth/v1/signup", payload, {
-        params: { grant_type: "password" },
-      });
-      localStorage.setItem("access_token", data.access_token);
-      return true;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
   };
 
   const handleUsername = (e: React.ChangeEvent<HTMLInputElement>) => {

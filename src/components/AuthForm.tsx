@@ -25,13 +25,13 @@ export default function AuthForm(props: Readonly<AuthFormProps>) {
   return (
     <form onSubmit={handleFormSubmit} noValidate>
       <div className="form-group">
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username">Email</label>
         <AuthTextField
           id="username"
           name="username"
-          type="text"
-          placeholder="Masukkan username"
-          errorMsg="Username is required"
+          type="email"
+          placeholder="Masukkan email"
+          errorMsg="Email is required"
           onChange={handleUsername}
         />
       </div>

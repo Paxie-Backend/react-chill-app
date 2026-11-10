@@ -3,17 +3,16 @@ import { createBrowserRouter, redirect } from "react-router";
 import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
+import { localAuth } from "../utils/local-auth";
 
 const middlewareLogin = () => {
-  const access_token = localStorage.getItem("access_token");
-  if (access_token) {
+  if (localAuth.hasSession()) {
     throw redirect("/home");
   }
 };
 
 const middlewareHome = () => {
-  const access_token = localStorage.getItem("access_token");
-  if (!access_token) {
+  if (!localAuth.hasSession()) {
     throw redirect("/login");
   }
 };
