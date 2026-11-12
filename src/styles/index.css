@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;500;600;700;900&family=Poppins:wght@400&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-lato: "Lato", sans-serif;
+  --breakpoint-sm: 500px;
+}
+
+@layer base {
+  * {
+    @apply box-border font-lato;
+  }
+
+  body {
+    @apply m-0 min-h-screen;
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+}

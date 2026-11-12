@@ -1,6 +1,6 @@
-import type { IResponseMovie } from "../types/response-movie";
+import type { Movie } from "../types/movie";
 
-export const movies: IResponseMovie[] = [
+export const movies: Movie[] = [
   {
     id: 1,
     name: "Duty After School",

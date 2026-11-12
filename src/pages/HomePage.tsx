@@ -1,60 +1,39 @@
-import "../styles/homepage.css";
-
 import { movies } from "../data/movies";
 
-import NavBar from "../components/NavBar";
-import HeroSection from "../components/HeroSection";
-import CarouselHorizontal from "../components/CarouselHorizontal";
 import CardHorizontal from "../components/CardHorizontal";
-import Carousel from "../components/Carousel";
-import Card from "../components/Card";
+import CarouselHorizontal from "../components/CarouselHorizontal";
 import Footer from "../components/Footer";
+import HeroSection from "../components/HeroSection";
+import MovieSection from "../components/MovieSection";
+import NavBar from "../components/NavBar";
 
 export default function HomePage() {
-  const movieRecent = movies.filter((movie) => movie.type === "new_release" || movie.type === "recent");
-  const movieTopRating = movies.filter((movie) => movie.type === "top_rating");
-  const movieTrending = movies.filter((movie) => movie.type === "trending");
+  const recentReleases = movies.filter(
+    (movie) => movie.type === "new_release" || movie.type === "recent",
+  );
+  const topRatedMovies = movies.filter((movie) => movie.type === "top_rating");
+  const trendingMovies = movies.filter((movie) => movie.type === "trending");
 
   return (
-    <div className="homepage-container">
+    <div className="flex min-w-[360px] flex-col bg-[hsla(210,8%,10%,1)]">
       <NavBar />
-      <main>
+      <main className="mb-[27px] flex flex-col gap-5">
         <HeroSection />
         <CarouselHorizontal>
-          {movieTrending.map((item) => (
-            <CardHorizontal title={item.name} image={item.cover_url} key={item.id} />
+          {trendingMovies.map((movie) => (
+            <CardHorizontal
+              key={movie.id}
+              title={movie.name}
+              image={movie.cover_url}
+            />
           ))}
         </CarouselHorizontal>
-        <Carousel title="Top Rating Film dan Series Hari ini">
-          {movieTopRating.map((item) => (
-            <Card
-              title={item.name}
-              image={item.banner_url}
-              key={item.id}
-              newEp={item.is_new_episode}
-            />
-          ))}
-        </Carousel>
-        <Carousel title="Film Trending">
-          {movieTrending.map((item) => (
-            <Card
-              title={item.name}
-              image={item.banner_url}
-              key={item.id}
-              newEp={item.is_new_episode}
-            />
-          ))}
-        </Carousel>
-        <Carousel title="Rilis Baru">
-          {movieRecent.map((item) => (
-            <Card
-              title={item.name}
-              image={item.banner_url}
-              key={item.id}
-              newEp={item.is_new_episode}
-            />
-          ))}
-        </Carousel>
+        <MovieSection
+          title="Top Rating Film dan Series Hari ini"
+          movies={topRatedMovies}
+        />
+        <MovieSection title="Film Trending" movies={trendingMovies} />
+        <MovieSection title="Rilis Baru" movies={recentReleases} />
       </main>
       <Footer />
     </div>

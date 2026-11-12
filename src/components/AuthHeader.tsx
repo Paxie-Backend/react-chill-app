@@ -1,6 +1,3 @@
-import "../styles/authentication.css";
-import "../styles/main.css";
-
 import AuthError from "./AuthError";
 
 interface IAuthHeaderProps {
@@ -9,13 +6,25 @@ interface IAuthHeaderProps {
   isError: boolean;
 }
 
-export default function AuthHeader({ title, greeting, isError }: IAuthHeaderProps) {
+export default function AuthHeader({
+  title,
+  greeting,
+  isError,
+}: IAuthHeaderProps) {
   return (
     <>
-      <img className="logo" src="assets/images/chill-app-logo.svg" alt="chill-app-logo" />
-      <div className="welcome">
-        <h1>{title}</h1>
-        <p>{greeting}</p>
+      <img
+        className="w-[94px]"
+        src="assets/images/chill-app-logo.svg"
+        alt="chill-app-logo"
+      />
+      <div className="flex flex-col items-center justify-center gap-1">
+        <h1 className="text-[18px] leading-[140%] font-bold tracking-[0.2px] text-white">
+          {title}
+        </h1>
+        <p className="text-[10px] leading-[140%] tracking-[0.2px] text-white">
+          {greeting}
+        </p>
         <AuthError isError={isError} />
       </div>
     </>

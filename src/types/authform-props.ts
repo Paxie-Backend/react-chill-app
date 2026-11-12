@@ -1,14 +1,5 @@
 export interface AuthFormProps {
-  handleFormSubmit: (e: React.SubmitEvent<HTMLFormElement>) => void;
-  handleUsername: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleShowPassword: () => void;
-  showPassword: boolean;
-  linkDesc: string;
-  linkText: string;
-  textBtn: string;
-  navigateTo: string;
-  isRegisterPage?: boolean;
-  handlePasswordConfirm?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  passwordConfirm?: string;
+  mode: "login" | "register";
+  onSubmit: (email: string, password: string) => boolean;
+  onErrorChange: (hasError: boolean) => void;
 }

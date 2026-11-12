@@ -5,41 +5,36 @@ import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
 import { localAuth } from "../utils/local-auth";
 
-const middlewareLogin = () => {
+const redirectAuthenticatedUsers = () => {
   if (localAuth.hasSession()) {
     throw redirect("/home");
   }
 };
 
-const middlewareHome = () => {
+const requireAuthentication = () => {
   if (!localAuth.hasSession()) {
     throw redirect("/login");
   }
 };
 
-const middlewareRoot = () => {
-    throw redirect("/login");
-};
-
-
 export const router = createBrowserRouter([
   {
     path: "/",
-    loader: middlewareRoot,
+    loader: () => redirect("/login"),
   },
   {
     path: "/home",
     Component: HomePage,
-    loader: middlewareHome,
+    loader: requireAuthentication,
   },
   {
     path: "/register",
     Component: RegisterPage,
-    loader: middlewareLogin,
+    loader: redirectAuthenticatedUsers,
   },
   {
     path: "/login",
     Component: LoginPage,
-    loader: middlewareLogin,
+    loader: redirectAuthenticatedUsers,
   },
 ]);

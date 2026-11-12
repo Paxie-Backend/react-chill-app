@@ -11,13 +11,18 @@ export default function AuthFormLink(props: Readonly<IAuthFormLinkProps>) {
   const { linkDesc, navigateTo, linkText, isLoginPage } = props;
 
   return (
-    <div className="form-links">
-      <p>
-        {linkDesc} <NavLink to={navigateTo}>{linkText}</NavLink>
+    <div className="mt-[3px] flex justify-between">
+      <p className="text-[10px] leading-[140%] tracking-[0.2px] text-[hsla(220,2%,76%,1)]">
+        {linkDesc}{" "}
+        <NavLink className="text-white no-underline" to={navigateTo}>
+          {linkText}
+        </NavLink>
       </p>
       {isLoginPage ? (
-        <p>
-          <NavLink to="#">Lupa kata sandi?</NavLink>
+        <p className="text-[10px] leading-[140%] tracking-[0.2px] text-[hsla(220,2%,76%,1)]">
+          <NavLink className="text-white no-underline" to="#">
+            Lupa kata sandi?
+          </NavLink>
         </p>
       ) : null}
     </div>
