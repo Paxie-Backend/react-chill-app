@@ -5,7 +5,7 @@ interface ICarouselProps {
   children: ReactNode;
 }
 
-export default function Carousel(props: ICarouselProps) {
+export default function Carousel(props: Readonly<ICarouselProps>) {
   const { title, children } = props;
 
   return (
